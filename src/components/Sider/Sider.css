@@ -1,0 +1,46 @@
+.sider {
+    height: 100%;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70%;
+    max-width: 300px;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.sider.open {
+    transform: translateX(0);
+    box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.sider ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    height: 100%;
+}
+
+.sider li {
+    margin: 0.5rem 0;
+}
+
+.sider a {
+    text-decoration: none;
+    color: salmon;
+    font-size: 1.5rem;
+}
+
+.sider a:hover,
+.sider a:active {
+    color: blueviolet;
+}
+
+@media (min-width: 751px) {
+    .sider {
+        display: none;
+    }
+}
