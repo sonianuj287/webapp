@@ -4,11 +4,14 @@ import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import firebase from "firebase";
 
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
+  <div style={{width:'70%',paddingLeft:'30%',paddingTop:'10%'}} >
+  <div className="card m-3">
+  <h1 className="card-header">Sign Up</h1>
     <SignUpForm />
+  </div>
   </div>
 );
 
@@ -17,6 +20,10 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  link1:'',
+  link2:'',
+  qualification:'',
+  subject:'',
   isAdmin: false,
   error: null,
 };
@@ -39,12 +46,14 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
+    const { username, email, passwordOne, link1, link2, qualification, subject, isAdmin } = this.state;
     const roles = [];
 
     if (isAdmin) {
       roles.push(ROLES.ADMIN);
     }
+
+    const db = firebase.firestore();
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -54,8 +63,30 @@ class SignUpFormBase extends Component {
           username,
           email,
           roles,
-        });
+        }),
+
+        db.collection('Teacher').get().then(snap => {
+          let s = snap.size;
+            s = s+1;
+          var q = "TCHLNG" + s;
+        db.collection(q)
+       .doc("TCHLNG1")
+       .set({
+        courses: [],
+        name: username,
+        email: email,
+        profileLink: link1,
+        profileLink1: link2,
+        qualifications: qualification,
+        subject:subject,
+        teacherId:q,
+        teacherPhoto:'',
+        verify: false,
+       });
+    
+       });
       })
+
       .then(() => {
         return this.props.firebase.doSendEmailVerification(); 
       })
@@ -88,6 +119,10 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
+      link1,
+      link2,
+      qualification,
+      subject,
       isAdmin,
       error,
     } = this.state;
@@ -96,11 +131,12 @@ class SignUpFormBase extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';
+      username === '' || link1 === '' || link2 === '' || qualification === '' || subject === '';
 
     return (
       <form onSubmit={this.onSubmit}>
         <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
           name="username"
           value={username}
           onChange={this.onChange}
@@ -108,6 +144,7 @@ class SignUpFormBase extends Component {
           placeholder="Full Name"
         />
         <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
           name="email"
           value={email}
           onChange={this.onChange}
@@ -115,6 +152,39 @@ class SignUpFormBase extends Component {
           placeholder="Email Address"
         />
         <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
+          name="link1"
+          value={link1}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Facebook link"
+        />
+        <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
+          name="link2"
+          value={link2}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Github link"
+        />
+        <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
+          name="qualification"
+          value={qualification}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Qualifications"
+        />
+        <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
+          name="subject"
+          value={subject}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Preferred subject"
+        />
+        <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
@@ -122,13 +192,14 @@ class SignUpFormBase extends Component {
           placeholder="Password"
         />
         <input
+        style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
         />
-        <label>
+        {/* <label>
           Admin:
           <input
             name="isAdmin"
@@ -136,10 +207,17 @@ class SignUpFormBase extends Component {
             checked={isAdmin}
             onChange={this.onChangeCheckbox}
           />
-        </label>
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+        </label> */}
+        <br/>
+        <br/>
+        <br/>
+        <button className="btn btn-primary" 
+        style={{backgroundColor:"#2459d0",width:100,height:60,borderRadius:10,color:"white",marginLeft:'40%'}} disabled={isInvalid} type="submit">
+        
+        Sign Up {' '}
+
+        
+      </button>
 
         {error && <p>{error.message}</p>}
       </form>

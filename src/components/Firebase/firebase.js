@@ -1,6 +1,8 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/firestore';
+import "firebase/storage";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -14,10 +16,13 @@ const config = {
 class Firebase {
   constructor() {
     app.initializeApp(config);
+    
 
     this.emailAuthProvider = app.auth.EmailAuthProvider;
     this.auth = app.auth();
     this.db = app.database();
+    this.store = app.firestore();
+    this.storage = app.storage();
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.facebookProvider = new app.auth.FacebookAuthProvider();
@@ -89,6 +94,9 @@ class Firebase {
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
+
+  st = () => this.store;
+  stg = () => this.storage;
 }
 
 export default Firebase;

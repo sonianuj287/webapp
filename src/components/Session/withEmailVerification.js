@@ -29,7 +29,7 @@ const withEmailVerification = Component => {
         <AuthUserContext.Consumer>
           {authUser =>
             needsEmailVerification(authUser) ? (
-              <div>
+              <div style={{padding:100}} >
                 {this.state.isSent ? (
                   <p>
                     E-Mail confirmation sent: Check you E-Mails (Spam

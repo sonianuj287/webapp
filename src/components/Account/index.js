@@ -19,24 +19,22 @@ const SIGN_IN_METHODS = [
     id: 'google.com',
     provider: 'googleProvider',
   },
-  {
-    id: 'facebook.com',
-    provider: 'facebookProvider',
-  },
-  {
-    id: 'twitter.com',
-    provider: 'twitterProvider',
-  },
 ];
 
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <div>
-        <h1>Account: {authUser.email}</h1>
+  <div style={{width:'70%',paddingLeft:'30%',paddingTop:'10%'}} >
+  <div className="card m-3">
+        <h1 className="card-header">Account: {authUser.email}</h1>
+        <br/>
         <PasswordForgetForm />
-        <PasswordChangeForm />
+        {/* <PasswordChangeForm /> */}
+        <br/>
+        <div className="card-footer text-center border-top-0">
         <LoginManagement authUser={authUser} />
+        </div>
+      </div>
       </div>
     )}
   </AuthUserContext.Consumer>
@@ -96,7 +94,7 @@ class LoginManagementBase extends Component {
 
     return (
       <div>
-        Sign In Methods:
+      <h1>Sign in methods:</h1>
         <ul>
           {SIGN_IN_METHODS.map(signInMethod => {
             const onlyOneLeft = activeSignInMethods.length === 1;

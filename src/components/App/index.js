@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Navbar from '../Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
@@ -12,16 +13,21 @@ import AdminPage from '../Admin';
 import AssignmentsPage from '../Assignments';
 import LecturesPage from '../Lectures';
 import QuizPage from '../Quiz';
+import VideoUploadPage from '../VideoUpload';
+// import AssignmentCheck from '../AssignmentCheck';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
 const App = () => (
   <Router>
-    <div>
-      <Navigation />
+    {/* <div> */}
+      
+      {/* <Navigation /> */}
 
-      <hr />
+      {/* <hr /> */}
+      <Navbar />
+      <Switch>
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -33,9 +39,29 @@ const App = () => (
       <Route exact path={ROUTES.ASSIGNMENTS} component={AssignmentsPage} />
       <Route exact path={ROUTES.LECTURES} component={LecturesPage} />
       <Route exact path={ROUTES.QUIZ} component={QuizPage} />
-
-    </div>
+      <Route exact path={ROUTES.VIDEOUPLOAD} component={VideoUploadPage} />
+      {/* <Route exact path={ROUTES.ASSIGNMENTCHECK} component={AssignmentCheck}/> */}
+      </Switch>
+    {/* </div> */}
   </Router>
 );
 
 export default withAuthentication(App);
+
+
+
+  
+// function App() {
+//   return (
+//     <Router>
+//       <Navbar />
+//       <Switch>
+//         <Route exact path={ROUTES.LANDING} component={LandingPage} />
+//         <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+//         <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+//       </Switch>
+//     </Router>
+//   );
+// }
+  
+// export default App;
