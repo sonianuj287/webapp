@@ -69,8 +69,8 @@ class SignUpFormBase extends Component {
           let s = snap.size;
             s = s+1;
           var q = "TCHLNG" + s;
-        db.collection(q)
-       .doc("TCHLNG1")
+        db.collection("TCHLNG")
+       .doc(q)
        .set({
         courses: [],
         name: username,
