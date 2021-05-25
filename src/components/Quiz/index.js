@@ -210,7 +210,7 @@ function QuizPage() {
                         {/* <input className="file-path validate" type="text" name="courseid" placeholder="Course ID" value={courseid} style={{height:30,padding:5,margin:10,borderRadius:5}} onChange={handleCourseidChange} /> */}
                         <div style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}} >
                         {/* <Dropdown options={options} onChange={handleDrop} value={defaultOption} placeholder="Select an option"  /> */}
-                        <Select options={selectedOptions} onChange={handleChange}/>
+                        <Select options={selectedOptions} onChange={handleChange}placeholder="Select Course"/>
                         
                         </div>
 

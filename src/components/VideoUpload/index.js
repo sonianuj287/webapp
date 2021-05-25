@@ -207,7 +207,7 @@ async function getOptions(e) {
       </div> */}
                   <div style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}} >
                         {/* <Dropdown options={options} onChange={handleDrop} value={defaultOption} placeholder="Select an option"  /> */}
-                        <Select options={selectedOptions} onChange={handleChange}/>
+                        <Select options={selectedOptions} onChange={handleChange} placeholder="Select Course"/>
                         
                         </div>
       <br/>

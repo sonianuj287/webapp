@@ -65,9 +65,13 @@ const NavigationAuth = ({authUser}) => {
                           Quiz
                         </NavLink>
                     </li>
-                    <p>            </p>
                     <li><NavLink to={ROUTES.VIDEOUPLOAD} activeStyle>
                           VideoUpload
+                        </NavLink>
+          
+                    </li>
+                    <li><NavLink to={ROUTES.GRADING} activeStyle>
+                          Grading
                         </NavLink>
           
                     </li>

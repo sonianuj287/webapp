@@ -3,7 +3,7 @@ import React from 'react';
 import { withFirebase } from '../Firebase';
 
 const SignOutButton = ({ firebase }) => (
-  <button type="button" onClick={firebase.doSignOut} style={{marginLeft:500,color:'#fff',backgroundColor:'#d9534f',borderColor:"d43f3a",borderRadius:"4px",
+  <button type="button" onClick={firebase.doSignOut} style={{marginLeft:350,color:'#fff',backgroundColor:'#d9534f',borderColor:"d43f3a",borderRadius:"4px",
   padding:"6px 12px",fontSize:"14px",border:"1px solid transparent"}}>
     Sign Out
   </button>

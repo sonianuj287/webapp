@@ -14,6 +14,7 @@ import AssignmentsPage from '../Assignments';
 import LecturesPage from '../Lectures';
 import QuizPage from '../Quiz';
 import VideoUploadPage from '../VideoUpload';
+import GradingPage from '../Grading';
 // import AssignmentCheck from '../AssignmentCheck';
 
 import * as ROUTES from '../../constants/routes';
@@ -40,6 +41,7 @@ const App = () => (
       <Route exact path={ROUTES.LECTURES} component={LecturesPage} />
       <Route exact path={ROUTES.QUIZ} component={QuizPage} />
       <Route exact path={ROUTES.VIDEOUPLOAD} component={VideoUploadPage} />
+      <Route exact path={ROUTES.GRADING} component={GradingPage} />
       {/* <Route exact path={ROUTES.ASSIGNMENTCHECK} component={AssignmentCheck}/> */}
       </Switch>
     {/* </div> */}

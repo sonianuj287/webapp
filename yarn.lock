@@ -1866,6 +1866,11 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@pdftron/webviewer@^7.3.2":
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/@pdftron/webviewer/-/webviewer-7.3.2.tgz#58c24fa6318268b7962fb51bbf6486bac24c7d64"
+  integrity sha512-GJJ3ErKn2gZKXcjFBg46d4u0X+60daiVu04i+AoYbA7xyocCpGIhW/cg0dZmTq0c1ITfHXvn5uG42UN3BBFWiA==
+
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"
@@ -1935,6 +1940,11 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
+
+"@react-pdf-viewer/core@2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@react-pdf-viewer/core/-/core-2.4.3.tgz#781b341186e4a799c711a67a21cf6f18eaa451aa"
+  integrity sha512-1OHdruQZwYjBQ0Cadm0XGhMMAPeIObEIdJYHJYu30goM5UD0QF1L4q/1Bd12fRXR07fU7rZY65Ypup/riikQtQ==
 
 "@restart/context@^2.1.4":
   version "2.1.4"
@@ -5607,6 +5617,14 @@ file-loader@6.1.1:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+file-loader@^6.0.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-6.2.0.tgz#baef7cf8e1840df325e4390b4484879480eebe4d"
+  integrity sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
+
 file-uri-to-path@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
@@ -7805,6 +7823,11 @@ magic-string@^0.25.0, magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.4"
 
+make-cancellable-promise@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/make-cancellable-promise/-/make-cancellable-promise-1.0.0.tgz#826214115b0827ca7a45ba204df7c31546243870"
+  integrity sha512-+YO6Grg2uy/z8Mv3uV90OP6yAUHIF43YGgEFbejmBrK9VWFsVO6DvzFMcopXr9wCNg3/QIltIKiSCROC7zFB2g==
+
 make-dir@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-2.1.0.tgz#5f0310e18b8be898cc07009295a30ae41e91e6f5"
@@ -7898,6 +7921,11 @@ merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
   integrity sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
+
+merge-refs@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/merge-refs/-/merge-refs-1.0.0.tgz#388348bce22e623782c6df9d3c4fc55888276120"
+  integrity sha512-WZ4S5wqD9FCR9hxkLgvcHJCBxzXzy3VVE6p8W2OzxRzB+hLRlcadGE2bW9xp2KSzk10rvp4y+pwwKO6JQVguMg==
 
 merge-stream@^2.0.0:
   version "2.0.0"
@@ -8801,18 +8829,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pdf-viewer-reactjs@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/pdf-viewer-reactjs/-/pdf-viewer-reactjs-2.2.3.tgz#63e1c90d9575a87ba801b0564558138972733db7"
-  integrity sha512-HM6ngxxnbztd/N/3dB+of3jSZtzS8CjcAoIfSWe7OY9Aqwb6cXLHbluCWc//cySXDdj3hhe8Wj5Wjg7T1ktxUA==
-  dependencies:
-    pdfjs-dist "^2.6.347"
-    prop-types "^15.7.2"
-
-pdfjs-dist@^2.6.347:
-  version "2.7.570"
-  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.7.570.tgz#7233241a2437ac22387656099b6e549d032f0b35"
-  integrity sha512-/ZkA1FwkEOyDaq11JhMLazdwQAA0F9uwrP7h/1L9Akt9KWh1G5/tkzS+bPuUELq2s2GDFnaT+kooN/aSjT7DXQ==
+pdfjs-dist@2.6.347:
+  version "2.6.347"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.6.347.tgz#f257ed66e83be900cd0fd28524a2187fb9e25cd5"
+  integrity sha512-QC+h7hG2su9v/nU1wEI3SnpPIrqJODL7GTDFvR74ANKGq1AFJW16PH8VWnhpiTi9YcLSFV9xLeWSgq+ckHLdVQ==
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -10057,6 +10077,20 @@ react-overlays@^5.0.0:
     prop-types "^15.7.2"
     uncontrollable "^7.2.1"
     warning "^4.0.3"
+
+react-pdf@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/react-pdf/-/react-pdf-5.3.0.tgz#29f128c70fdb2397ce9d65f3402e762847259f9d"
+  integrity sha512-9/8gx5uy79PTkN7+NZoFxiOYfMWoBFlUEdAPyf9ZVvOtPdumJD9z6j7O40pMSlw2vENfdNoPIo8E+iolafg4Hg==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    file-loader "^6.0.0"
+    make-cancellable-promise "^1.0.0"
+    make-event-props "^1.1.0"
+    merge-class-names "^1.1.1"
+    merge-refs "^1.0.0"
+    pdfjs-dist "2.6.347"
+    prop-types "^15.6.2"
 
 react-refresh@^0.8.3:
   version "0.8.3"
@@ -11859,6 +11893,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@^4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
+  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
 ua-parser-js@^0.7.18:
   version "0.7.28"

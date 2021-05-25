@@ -26,6 +26,7 @@ const INITIAL_STATE = {
   subject:'',
   isAdmin: false,
   error: null,
+  file: '',
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -46,7 +47,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, link1, link2, qualification, subject, isAdmin } = this.state;
+    const { username, email, passwordOne, link1, link2, qualification, subject, isAdmin, file } = this.state;
     const roles = [];
 
     if (isAdmin) {
@@ -54,6 +55,8 @@ class SignUpFormBase extends Component {
     }
 
     const db = firebase.firestore();
+
+    
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -69,7 +72,7 @@ class SignUpFormBase extends Component {
           let s = snap.size;
             s = s+1;
           var q = "TCHLNG" + s;
-        db.collection("TCHLNG")
+        db.collection("Teacher")
        .doc(q)
        .set({
         courses: [],
@@ -165,7 +168,7 @@ class SignUpFormBase extends Component {
           value={link2}
           onChange={this.onChange}
           type="text"
-          placeholder="Github link"
+          placeholder="LinkedIn link"
         />
         <input
         style={{height:40,marginLeft:"25%",marginTop:20,borderRadius:5,width:'50%'}}
@@ -208,6 +211,7 @@ class SignUpFormBase extends Component {
             onChange={this.onChangeCheckbox}
           />
         </label> */}
+        
         <br/>
         <br/>
         <br/>

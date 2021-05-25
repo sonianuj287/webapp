@@ -9,4 +9,5 @@ export const ASSIGNMENTS = '/assignments';
 export const LECTURES = '/lectures';
 export const QUIZ = '/quiz';
 export const VIDEOUPLOAD = '/vidooupload';
+export const GRADING = '/grading';
 // export const ASSIGNMENTCHECK = '/assignmentcheck';
