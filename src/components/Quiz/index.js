@@ -41,7 +41,9 @@ function QuizPage() {
         console.log(postData);
         for(let i=0;i<postData.length;i++){
             if(postData[i].email == e){
-                options.push({"value":postData[i].courses,"label":postData[i].courses});
+                for(let j=0;j<postData[i].courses.length;j++){
+                    options.push({"value":postData[i].courses[j],"label":postData[i].courses[j]});
+                }
             }
         }
         console.log(options);
@@ -170,7 +172,7 @@ function QuizPage() {
         db.collection("Quiz")
        .doc(q)
        .set({
-        courseId: courseid[0],
+        courseId: courseid,
         duration: parseInt(duration),
         endTime: eTime,
         questions: keys,

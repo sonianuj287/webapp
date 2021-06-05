@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '../Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
@@ -15,6 +14,7 @@ import LecturesPage from '../Lectures';
 import QuizPage from '../Quiz';
 import VideoUploadPage from '../VideoUpload';
 import GradingPage from '../Grading';
+import LiveClassPage from '../LiveClass';
 // import AssignmentCheck from '../AssignmentCheck';
 
 import * as ROUTES from '../../constants/routes';
@@ -42,6 +42,7 @@ const App = () => (
       <Route exact path={ROUTES.QUIZ} component={QuizPage} />
       <Route exact path={ROUTES.VIDEOUPLOAD} component={VideoUploadPage} />
       <Route exact path={ROUTES.GRADING} component={GradingPage} />
+      <Route exact path={ROUTES.LIVECLASS} component={LiveClassPage} />
       {/* <Route exact path={ROUTES.ASSIGNMENTCHECK} component={AssignmentCheck}/> */}
       </Switch>
     {/* </div> */}

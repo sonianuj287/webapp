@@ -75,6 +75,11 @@ const NavigationAuth = ({authUser}) => {
                         </NavLink>
           
                     </li>
+                    <li><NavLink to={ROUTES.LIVECLASS} activeStyle>
+                          LiveClass
+                        </NavLink>
+          
+                    </li>
                     {authUser.roles.includes(ROLES.ADMIN) && (
                     <li><NavLink to={ROUTES.ADMIN} >
                   Admin

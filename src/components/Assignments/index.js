@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import firebase from "firebase";
 import DateTimePicker from 'react-datetime-picker';
 import {
@@ -7,7 +7,6 @@ import {
   withEmailVerification,
 } from '../Session';
 import { compose } from 'recompose';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Select from 'react-select'
 
@@ -15,16 +14,14 @@ const AssignmentPage = () => {
 
   const postData = [];
   const options = [];
-  const defaultOption = options[0];
 const [files, setFiles] = useState([]);
 const [title, setTitle] = useState("");
 const [courseid,setCourseid] = useState("");
-const [downloadURL, setDownloadURL] = useState("");
 const [deadline, setDeadline] = useState(new Date());
 const [progress, setProgress] = useState(0);
 const [selectedOptions, setSelectedOptions] = useState([]);
-const [id, setId] =  useState("");
-const [name, setName] = useState("");
+// const [id, setId] =  useState("");
+// const [name, setName] = useState("");
 const [email,setEmail] = useState("");
 
 
@@ -35,7 +32,9 @@ async function getOptions(e) {
     console.log(postData);
     for(let i=0;i<postData.length;i++){
       if(postData[i].email == e){
-        options.push({"value":postData[i].courses,"label":postData[i].courses});
+        for(let j=0;j<postData[i].courses.length;j++){
+          options.push({"value":postData[i].courses[j],"label":postData[i].courses[j]});
+        }
       }
     }
     console.log(options);
@@ -44,7 +43,7 @@ async function getOptions(e) {
 }
 
 const handleNameChange = e => {
-  setName(e);
+  // setName(e);
 };
 const handleEmailChange = e => {
   if(email === ""){
@@ -144,7 +143,7 @@ const handleCourseidChange = e => {
               .set({
                 answerFile:{},
                 assignmentId:"ALNG"+s,
-                courseId: courseid[0],
+                courseId: courseid,
                 creationDate: new Date(),
                 deadline: deadline,
                 grading:{},
@@ -172,8 +171,8 @@ const handleCourseidChange = e => {
 
      const handleChange = (e) => {
       console.log(e)
-     setId(e.value);
-     setName(e.label);
+    //  setId(e.value);
+    //  setName(e.label);
      setCourseid(e.label);
     }
 

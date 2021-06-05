@@ -8,7 +8,7 @@ import {
 } from '../Session';
 import { withFirebase } from '../Firebase';
 import { PasswordForgetForm } from '../PasswordForget';
-import PasswordChangeForm from '../PasswordChange';
+// import PasswordChangeForm from '../PasswordChange';
 
 const SIGN_IN_METHODS = [
   {

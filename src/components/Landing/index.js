@@ -1,11 +1,12 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import logo from './logo.png';
 import img1 from './img1.jpeg';
 import img2 from './img2.png';
 import background from "./img6.jpeg";
 import sample from './Render.mp4';
 import data from './data.json';
-import emailjs from 'emailjs-com'
+import emailjs from 'emailjs-com';
+import firebase from 'firebase';
 
 const initialState = {
   name: '',
@@ -15,6 +16,8 @@ const initialState = {
 
 const Landing = () => {
   const [{ name, email, message }, setState] = useState(initialState);
+
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setState((prevState) => ({ ...prevState, [name]: value }))
@@ -26,7 +29,7 @@ const Landing = () => {
     console.log(name, email, message)
     emailjs
       .sendForm(
-        'service_2krr5p8', 'Hi this is from learn and grow', e.target, 'YOUR_USER_ID'
+        'service_2krr5p8', 'template_zsog8up', e.target, 'user_yNUT6j1wQLTwY3f7ircGp'
       )
       .then(
         (result) => {
@@ -37,18 +40,9 @@ const Landing = () => {
           console.log(error.text)
         }
       )
+      alert("Message sent");
   }
-  // <div className="App" 
-  // // style={{ backgroundImage: `url(${background})`
-  // //  ,height:'200%',width:'100%' }}
-  //  >
-  // {/* <img src={logo} height='850' style={{alignSelf:'center'}} alt="logo"/> */}
 
-
-  // <video style={{opacity:0.7}} className='videoTag' autoPlay loop muted height='945' > 
-  //   <source src={sample} type='video/mp4' />
-  // </video>
-  // </div>
   return(
   <div>
 
@@ -267,7 +261,8 @@ const Landing = () => {
             and everything work like charm.
           </p>
         </div>
-        <div id='row'>
+
+        <div>
                 <div className='col-md-3 col-sm-6 team'>
                   <div className='thumbnail'>
                     {' '}
@@ -288,7 +283,13 @@ const Landing = () => {
                     </div>
                   </div>
                 </div>
+                
+
+
+
         </div>
+
+
       </div>
     </div>
 

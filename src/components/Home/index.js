@@ -17,6 +17,7 @@ function HomePage(){
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [teacherImage, setTeacherImage] = useState("");
   const [selectedCourse, setSelectedCourse] = useState([]);
 
   async function getCourses(e) {
@@ -26,6 +27,7 @@ function HomePage(){
       for(let i=0;i<postCourses.length;i++){
           if(postCourses[i].email == e){
               optionsCourses.push(postCourses[i].courses);
+              setTeacherImage(postCourses[i].teacherPhoto);
           }
       }
     });
@@ -36,7 +38,7 @@ function HomePage(){
       for(let i=0;i<postCoursesName.length;i++){
         for(let j=0;j<optionsCourses[0].length;j++){
           if(optionsCourses[0][j] == postCoursesName[i].courseId){
-            tempArray.push({"name":postCoursesName[i].courseName,"id":postCoursesName[i].courseId});
+            tempArray.push({"name":postCoursesName[i].courseName,"id":postCoursesName[i].courseId,"img":postCoursesName[i].courseImage});
           }
         }
       }
@@ -74,15 +76,18 @@ return(
             // <h1 onLoad={handleNameChange(authUser.email)} >Account: {authUser.email}</h1>
       )}
     </AuthUserContext.Consumer>
-    
+    <div style={{display:"flex", flexDirection:"row"}} >
+    <img src={teacherImage} alt="Profile picture" style={{height:50,width:50,borderRadius:100,marginTop:20,marginRight:20}} />
     <h1>Welcome {name}</h1>
-    <h1>{email}</h1>
+    </div>
     <div style={{padding:50}} ></div>
     <h2>Courses you are serving</h2>
 
-    <ol>
+    <ol style={{display:"flex", flexDirection:"row"}} >
       {selectedCourse.map((c) => (
-        <li><h3>{c.id+' - '+c.name}</h3></li>
+        <li style={{marginLeft:30}} ><h3>{c.id+' - '+c.name}</h3>
+        <img src={c.img} alt="course Image" style={{height:200,width:300,borderRadius:10}} />
+        </li>
       ))}
     </ol>
 </div>
@@ -97,3 +102,4 @@ export default compose(
   withEmailVerification,
   withAuthorization(condition),
 )(HomePage);
+

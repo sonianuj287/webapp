@@ -181,7 +181,7 @@ const handleStandardChange = e => {
                                 dislikes:[],
                                 likes:[],
                                 courseId: q,
-                                standard: standard,
+                                standard: parseInt(standard),
                                 studentList:[],
                             })
                         })

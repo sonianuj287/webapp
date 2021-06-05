@@ -27,6 +27,8 @@ const INITIAL_STATE = {
   isAdmin: false,
   error: null,
   file: '',
+  progress: 0,
+  url: '',
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -46,13 +48,20 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+onSubmit = (event) => {
+    event.preventDefault();
     const { username, email, passwordOne, link1, link2, qualification, subject, isAdmin, file } = this.state;
     const roles = [];
 
     if (isAdmin) {
       roles.push(ROLES.ADMIN);
     }
+
+
+
+   
+
+
 
     const db = firebase.firestore();
 
@@ -72,20 +81,51 @@ class SignUpFormBase extends Component {
           let s = snap.size;
             s = s+1;
           var q = "TCHLNG" + s;
-        db.collection("Teacher")
-       .doc(q)
-       .set({
-        courses: [],
-        name: username,
-        email: email,
-        profileLink: link1,
-        profileLink1: link2,
-        qualifications: qualification,
-        subject:subject,
-        teacherId:q,
-        teacherPhoto:'',
-        verify: false,
-       });
+          let url = '';
+
+          
+          const uploadTask = firebase.storage().ref().child(`Teacher/${q}/${file.name}`).put(file);
+          uploadTask.on(
+            firebase.storage.TaskEvent.STATE_CHANGED,
+            snapshot => {
+             const progress = 
+               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                if (snapshot.state === firebase.storage.TaskState.RUNNING) {
+                 console.log(`Progress: ${progress}%`);
+                //  setProgress(progress);
+                this.setState({progress: progress})
+                 if(parseInt(progress) === 100){
+                   alert('Signed up successfully, please follow the mail to verify yourself');
+                  //  Resetter();
+                 }
+                }
+              },
+              error => console.log(error.code),
+              async () => {
+                const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                console.log(downloadURL);
+                // url = downloadURL;
+                // this.setState({url: downloadURL});
+                await firebase.firestore().collection("Teacher")
+                .doc(q)
+                .set({
+                 courses: [],
+                 name: username,
+                 email: email,
+                 profileLink: link1,
+                 profileLink1: link2,
+                 qualifications: qualification,
+                 subject:subject,
+                 teacherId:q,
+                 teacherPhoto:'',
+                 verify: false,
+                 teacherPhoto: downloadURL,
+                });
+               }
+              );
+
+
+
     
        });
       })
@@ -116,6 +156,12 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.checked });
   };
 
+  onFileChange = (e) => {
+    // const image = e.target.files[0]
+    // setFiles(image);
+    this.setState({file:e.target.files[0]})
+  }
+
   render() {
     const {
       username,
@@ -127,6 +173,7 @@ class SignUpFormBase extends Component {
       qualification,
       subject,
       isAdmin,
+      file,
       error,
     } = this.state;
 
@@ -202,6 +249,20 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Confirm Password"
         />
+
+
+        <div style={{alignSelf:'center',marginLeft:'40%'}} >
+ <label >Select Files         
+   <input type="file" multiple onChange={this.onFileChange} />
+ </label>
+ <br/>
+ <br/>
+ <br/>
+ <progress value={this.state.progress} max="100" style={{height:25, transition:'ease-in-out'}} />
+ <span>  {parseInt(this.state.progress)}%</span>
+ </div>
+
+
         {/* <label>
           Admin:
           <input

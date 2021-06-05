@@ -10,4 +10,5 @@ export const LECTURES = '/lectures';
 export const QUIZ = '/quiz';
 export const VIDEOUPLOAD = '/vidooupload';
 export const GRADING = '/grading';
+export const LIVECLASS = '/liveclass';
 // export const ASSIGNMENTCHECK = '/assignmentcheck';

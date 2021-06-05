@@ -50,9 +50,11 @@ function GradingPage(){
       snapshot.forEach((doc) => postCourses.push({ ...doc.data(), id: doc.id }));
       // console.log(postData);
       for(let i=0;i<postCourses.length;i++){
-          if(postCourses[i].email == e){
-              optionsCourses.push({"value":postCourses[i].courses,"label":postCourses[i].courses});
+        if(postCourses[i].email == e){
+          for(let j=0;j<postCourses[i].courses.length;j++){
+            optionsCourses.push({"value":postCourses[i].courses[j],"label":postCourses[i].courses[j]});
           }
+        }
       }
     });
     setSelectedCourse(optionsCourses);
@@ -65,7 +67,7 @@ function GradingPage(){
       // console.log(postAssignment);
       for(let i=0;i<postAssignment.length;i++){
         // console.log(postAssignment[i].courseId)
-          if(postAssignment[i].courseId == e[0]){
+          if(postAssignment[i].courseId == e){
               optionsAssignment.push({"value":postAssignment[i].assignmentId,"label":postAssignment[i].assignmentId});
           }
       }
@@ -132,8 +134,9 @@ function GradingPage(){
     if(assignment=== ""){
       setAssignment(e.label);
       getStudents(e.label);
+      console.log(e.label);
 
-      let userDocument = await firebase.firestore().collection("Assignment").doc("ALNG4").get()
+      let userDocument = await firebase.firestore().collection("Assignment").doc(e.label).get()
       let dataObj = userDocument.data();
       let qfile = dataObj.questionFile;
       setQuestion(qfile);

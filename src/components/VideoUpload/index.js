@@ -35,12 +35,12 @@ async function getOptions(e) {
     snapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }));
     for(let i=0;i<postData.length;i++){
       if(postData[i].email == e){
-        
-        // console.log(postData[i].courses)
-        options.push({"value":postData[i].courses,"label":postData[i].courses});
+        for(let j=0;j<postData[i].courses.length;j++){
+          options.push({"value":postData[i].courses[j],"label":postData[i].courses[j]});
+        }
       }
     }
-    console.log(options);
+    // console.log(options);
   });
   setSelectedOptions(options);
 }
@@ -71,14 +71,14 @@ async function getOptions(e) {
   
 
   async function onUploadSubmission(e) {
+
     e.preventDefault();
-// console.log(typeof cd[0]);
 
-    const userRef = await firebase.firestore().collection("Course").doc(cd[0]).get();
-    const db = await firebase.firestore().collection("Course").doc(cd[0]);
-    // setCourseImage(userRef.data().courseImage);
+    const userRef = await firebase.firestore().collection("Course").doc(cd).get();
+    const db = await firebase.firestore().collection("Course").doc(cd);
+    setCourseImage(userRef.data().courseImage);
 
-    // console.log(userRef.data())
+    console.log(userRef.data())
 
 
     files.forEach(file => {
@@ -179,7 +179,7 @@ async function getOptions(e) {
   // }
 
   const handleChange = (e) => {
-    console.log(e)
+    // console.log(e)
   //  setId(e.value);
   //  setName(e.label);
    setCd(e.label);

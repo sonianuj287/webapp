@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import firebase from "firebase";
 
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
@@ -52,16 +53,27 @@ class SignInFormBase extends Component {
 
   onSubmit = event => {
     const { email, password } = this.state;
+    const postData = [];
+    const postAdminData = [];
+    const db = firebase.firestore();
 
-    this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
-      })
-      .catch(error => {
-        this.setState({ error });
-      });
+
+    db.collection('Teacher').onSnapshot((snapshot) => {
+      snapshot.forEach((doc) => postData.push({ ...doc.data(), id: doc.id }));
+      for(let i=0;i<postData.length;i++){
+        if(postData[i].email == email){
+            this.props.firebase
+              .doSignInWithEmailAndPassword(email, password)
+              .then(() => {
+                this.setState({ ...INITIAL_STATE });
+                this.props.history.push(ROUTES.HOME);
+              })
+              .catch(error => {
+                this.setState({ error });
+              });
+        }
+      }
+    });
 
     event.preventDefault();
   };
@@ -123,6 +135,8 @@ class SignInGoogleBase extends Component {
   }
 
   onSubmit = event => {
+
+
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
